@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,9 @@ SECRET_KEY = 'x@xq64@vf5ewy3b6cp9o9a4&^@_2vj6o!6_gc^6%yy0j32&-@7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://deploy-weather-application.herokuapp.com',
+'localhost',
+'127.0.0.1']
 
 
 # Application definition
@@ -158,5 +161,4 @@ except:
     pass
 
 # Configure Django App for Heroku.
-import django_heroku
 django_heroku.settings(locals())
