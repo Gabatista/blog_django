@@ -30,7 +30,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['https://deploy-weather-application.herokuapp.com',
 'localhost',
-'127.0.0.1']
+'127.0.0.1',
+'https://dj-blogueiro.herokuapp.com/']
 
 
 # Application definition
