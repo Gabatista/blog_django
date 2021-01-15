@@ -58,7 +58,7 @@
         <form method="POST" action="#envia_comentario">
           {% load crispy_forms_tags %}
             {% csrf_token %}
-          {% load crispy form %}
+          {% crispy form %}
 
             {% for hidden_field in form.hidden_fields %}
             {{ hidden_field }}
