@@ -56,7 +56,9 @@
         <h2 class="my-3">Deixe um comentário</h2>
 
         <form method="POST" action="#envia_comentario">
+          {% load crispy_forms_tags %}
             {% csrf_token %}
+          {% load crispy form %}
 
             {% for hidden_field in form.hidden_fields %}
             {{ hidden_field }}
