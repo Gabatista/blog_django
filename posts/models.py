@@ -2,6 +2,9 @@ from django.db import models
 from categorias.models import Categoria
 from django.contrib.auth.models import User
 from django.utils import timezone
+from PIL import Image
+from django.conf import settings
+import os
 
 
 class Post(models.Model):
@@ -16,3 +19,25 @@ class Post(models.Model):
 
     def __str__(self):
         return self.titulo_post
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        
+        self.resize_image(self.imagem_post, 800)
+
+    @staticmethod
+    def resize_image(imagem_nome, nova_largura):
+        imagem_path = os.path.join(settings.MEDIA_ROOT, imagem_nome)
+        img = Image.open(imagem_path)
+        largura, altura = img.size
+        nova_altura = round((nova_largura * altura) / largura)
+
+        if largura < nova_largura:
+            img.close()
+
+        nova_imagem = img.resize((nova_largura, nova_altura), Image.ANTIALIAS)
+        nova_imagem.save(
+            imagem_path,
+            optimize=True, quality=70
+        )
+        nova_imagem.close()
